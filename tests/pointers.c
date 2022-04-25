@@ -8,6 +8,7 @@
 
 void clear_char_array(char[], int);
 char *dna_to_rna(const char *dna);
+char *dna_to_rna_alt(const char *dna);
 
 int main() {
     char array_test[255];
@@ -26,8 +27,15 @@ int main() {
     }
     printf("]\n");
 
+    printf("[");
+    for (int n = 0; n < 5; n++) {
+        printf("%c ", p[n]);
+    }
+    printf("]\n");
+
     char *str_test = "ABC UU 123";
     printf("%s", dna_to_rna(str_test));
+    printf("%s", dna_to_rna_alt(str_test));
 
     return 0;
 }
@@ -42,11 +50,22 @@ char *dna_to_rna(const char *dna)
 {
     char *rna = dna;
     printf("%c\n", *(dna+0));
-    for (int n = 0; n < 255; n++) {
-        printf("%d | %c | %c", n, *dna, *rna);
-        /* Breaks bellow */
+    for (int n = 0; n < 255 && *(dna+n) != '\0'; n++) {
+        printf("%d | %c | %c\n", n, *(rna+n), *(rna+n));
         if (*(dna+n) == 'T') *(rna+n) = 'U';
-        else *(rna+n) = *(dna+n);
+        // The else fails, but not needed :(
+        /* else *(rna+n) = *(dna+n); */
+    }
+    return rna;
+}
+
+char *dna_to_rna_alt(const char *dna)
+{
+    char *rna = dna;
+    printf("%c\n", *(dna+0));
+    for (int n = 0; n < 255 && *(dna+n) != '\0'; n++) {
+        printf("%d | %c | %c\n", n, rna[n], rna[n]);
+        if (dna[n] == 'T') rna[n] = 'U';
     }
     return rna;
 }
