@@ -37,6 +37,11 @@ int main() {
     printf("%s", dna_to_rna(str_test));
     printf("%s", dna_to_rna_alt(str_test));
 
+    int number = 123;
+    int *nump;
+    nump = &number;
+    printf("\n%d", *nump);
+
     return 0;
 }
 
