@@ -1,3 +1,5 @@
+/* Kata: https://www.codewars.com/kata/57a429e253ba3381850000fb */
+
 const char *bmi (int weight, double height)
 {
     double result = weight / (height * height);

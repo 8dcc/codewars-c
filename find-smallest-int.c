@@ -1,3 +1,5 @@
+/* Kata: https://www.codewars.com/kata/55a2d7ebe362935a210000b2 */
+
 #include <stddef.h>
 
 int find_smallest_int(int *vec, size_t len)
