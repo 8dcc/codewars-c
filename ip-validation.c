@@ -1,3 +1,5 @@
+/* Kata: https://www.codewars.com/kata/515decfd9dcfc23bb6000006 */
+
 #include <string.h>
 
 int valid_fields(const char*);
