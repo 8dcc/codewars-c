@@ -2,13 +2,9 @@
 
 #include <stdint.h>
 
-int digits(uint64_t n) {
-    if (!n)
-        return 1;
-
+unsigned digits(uint64_t n) {
     int i;
-    for (i = 0; n > 0; i++, n /= 10)
+    for (i = 1; n >= 10; i++, n /= 10)
         ;
     return i;
 }
-
