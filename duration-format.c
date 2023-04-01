@@ -6,6 +6,24 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define SUM_STRS(data, data_str)                               \
+    {                                                          \
+        if (data) {                                            \
+            if (printed) {                                     \
+                if (print_and) {                               \
+                    sprintf(buf2, "%s and %s", data_str, buf); \
+                    print_and = false;                         \
+                } else {                                       \
+                    sprintf(buf2, "%s, %s", data_str, buf);    \
+                }                                              \
+            } else {                                           \
+                sprintf(buf2, "%s", data_str);                 \
+                printed = true;                                \
+            }                                                  \
+        }                                                      \
+        sprintf(buf, "%s", buf2); /* Copy to main buf */       \
+    }
+
 char* formatDuration(int n) {
     char* buf = calloc(255, sizeof(char));
 
@@ -61,65 +79,10 @@ char* formatDuration(int n) {
     }
     sprintf(buf, "%s", buf2); /* Copy to main buf */
 
-    if (m) {
-        if (printed) {
-            if (print_and) {
-                sprintf(buf2, "%s and %s", ms, buf);
-                print_and = false;
-            } else {
-                sprintf(buf2, "%s, %s", ms, buf);
-            }
-        } else {
-            sprintf(buf2, "%s", ms);
-            printed = true;
-        }
-    }
-    sprintf(buf, "%s", buf2); /* Copy to main buf */
-
-    if (h) {
-        if (printed) {
-            if (print_and) {
-                sprintf(buf2, "%s and %s", hs, buf);
-                print_and = false;
-            } else {
-                sprintf(buf2, "%s, %s", hs, buf);
-            }
-        } else {
-            sprintf(buf2, "%s", hs);
-            printed = true;
-        }
-    }
-    sprintf(buf, "%s", buf2); /* Copy to main buf */
-
-    if (d) {
-        if (printed) {
-            if (print_and) {
-                sprintf(buf2, "%s and %s", ds, buf);
-                print_and = false;
-            } else {
-                sprintf(buf2, "%s, %s", ds, buf);
-            }
-        } else {
-            sprintf(buf2, "%s", ds);
-            printed = true;
-        }
-    }
-    sprintf(buf, "%s", buf2); /* Copy to main buf */
-
-    if (y) {
-        if (printed) {
-            if (print_and) {
-                sprintf(buf2, "%s and %s", ys, buf);
-                print_and = false;
-            } else {
-                sprintf(buf2, "%s, %s", ys, buf);
-            }
-        } else {
-            sprintf(buf2, "%s", ys);
-            printed = true;
-        }
-    }
-    sprintf(buf, "%s", buf2); /* Copy to main buf */
+    SUM_STRS(m, ms);
+    SUM_STRS(h, hs);
+    SUM_STRS(d, ds);
+    SUM_STRS(y, ys);
 
     /* sprintf(buf, "%s%s%s%s%s", ys, ds, ms, hs, ss); */
 
@@ -132,3 +95,4 @@ char* formatDuration(int n) {
 
     return buf;
 }
+
