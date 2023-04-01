@@ -1,18 +1,16 @@
 /* Kata: https://www.codewars.com/kata/5a00e05cc374cb34d100000d */
-/* Not complete */
 
-/* Note: allocate memory yourself */
-/* return NULL in case num == 0 */
-
+#include <stdint.h>
 #include <stdlib.h>
 
-unsigned short *reverse_seq(unsigned short num)
-{
-    unsigned short arr[num];
-    unsigned short nnum = num;
-    for (int n = 0; n < num; n++) {
-        arr[n] = nnum;
-        nnum--;
-    }
-    return (num != 0) ? arr : NULL;
+uint16_t* reverse_seq(uint16_t num) {
+    if (!num)
+        return NULL;
+
+    uint16_t* arr = calloc(num, sizeof(uint16_t));
+
+    for (int i = 0; i < num; i++)
+        arr[i] = num - i;
+
+    return arr;
 }
